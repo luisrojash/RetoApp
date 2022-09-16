@@ -3,22 +3,25 @@ package com.app.lerp.retoapp.ui.movie
 import android.content.Intent
 import android.os.Bundle
 import com.app.lerp.retoapp.base.BaseActivity
+import com.app.lerp.retoapp.databinding.ActivityMovieBinding
 
-class MovieActivity:BaseActivity() {
+class MovieActivity : BaseActivity() {
+    private lateinit var binding: ActivityMovieBinding
 
     override fun startCreateViewBinding(savedInstanceState: Bundle?) {
-        TODO("Not yet implemented")
+        binding = ActivityMovieBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
     override fun getDataActivityForResult(data: Intent?) {
-        TODO("Not yet implemented")
+        //Solo se usa cuando necesitamos el startActivityResult
     }
 
     override fun initView() {
-        TODO("Not yet implemented")
+        //TODO("Not yet implemented")
     }
 
     override fun initViewModel() {
-        TODO("Not yet implemented")
+        //TODO("Not yet implemented")
     }
 }

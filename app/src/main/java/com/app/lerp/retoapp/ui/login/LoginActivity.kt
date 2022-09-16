@@ -2,7 +2,6 @@ package com.app.lerp.retoapp.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.fragment.app.FragmentActivity
 import com.app.lerp.retoapp.base.BaseActivity

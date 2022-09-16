@@ -2,6 +2,7 @@ package com.app.lerp.retoapp.di
 
 import android.content.Context
 import android.content.res.Resources
+import com.app.lerp.retoapp.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,7 +26,7 @@ object AppModule {
     @Singleton
     @Provides
     fun provideBaseUrl(): String {
-        return "https://api.themoviedb.org/3/movie/"
+        return BuildConfig.BASE_URL_API
     }
 
 }

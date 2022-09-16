@@ -17,12 +17,15 @@ class MovieHolder(val binding: ItemMovieBinding) :
         onClickInspection: (route: MovieData) -> Unit
     ) {
         Log.i("MOvieHolder ", " data " + movieData.image)
-        val imagePath =  movieData.image
+        val imagePath = movieData.image
         val options: RequestOptions = RequestOptions()
             .centerCrop()
             .placeholder(R.drawable.ic_reload)
             .error(R.drawable.ic_reload)
         Glide.with(binding.root).load(imagePath).apply(options).into(binding.imageMovie)
+        binding.root.setOnClickListener {
+            onClickInspection.invoke(movieData)
+        }
     }
 
 

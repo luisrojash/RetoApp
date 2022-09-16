@@ -14,6 +14,7 @@ import com.app.lerp.entity.MovieData
 import com.app.lerp.retoapp.R
 import com.app.lerp.retoapp.base.BaseActivity
 import com.app.lerp.retoapp.databinding.ActivityMovieBinding
+import com.app.lerp.retoapp.ui.movie.detail.DetailMovieActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -38,6 +39,7 @@ class MovieActivity : BaseActivity() {
     }
 
     override fun initView() {
+        showProgressDialog()
         initValidateConexion()
         val linearLayoutManager = LinearLayoutManager(this)
         binding.recycler.setHasFixedSize(true)
@@ -57,8 +59,7 @@ class MovieActivity : BaseActivity() {
                             return
                         }
                         mCurrentPage += 1
-                        validationLoadMore()
-                        if(isConnected()){
+                        if (isConnected()) {
                             showProgressDialog()
                             initViewModel()
                         }
@@ -69,20 +70,21 @@ class MovieActivity : BaseActivity() {
         }
         binding.recycler.addOnScrollListener(paginationScrollListener)
     }
-    private fun validationLoadMore(){
 
-    }
 
     private fun initValidateConexion() {
-        if(isConnected()){
+        if (isConnected()) {
             binding.fab.visibility = View.GONE
-        }else{
+        } else {
             binding.fab.visibility = View.VISIBLE
         }
     }
 
     private fun onClickDetail(it: MovieData) {
-
+        startActivity(
+            DetailMovieActivity
+                .newInstance(this, it)
+        )
     }
 
     override fun initViewModel() {

@@ -29,7 +29,6 @@ class LoginActivity : BaseActivity() {
             val usuario = binding.editTextNameUsuario.text.toString()
             val clave = binding.editTextClaveUsuario.text.toString()
             validateUser(usuario, clave)
-
         }
     }
 

@@ -10,10 +10,10 @@ class UserUseCase @Inject constructor(){
         if (usuario.trim() != "Admin") {
             return EventResult.Error(Exception("Usuario Invalido"))
         }
-        if (clave.trim() != "Password*123") {
+        if (clave.trim() != "Password*123.") {
             return EventResult.Error(Exception("Clave Invalido"))
         }
-        if (usuario.trim() == "Admin" && clave.trim() == "Password*123") {
+        if (usuario.trim() == "Admin" && clave.trim() == "Password*123.") {
             return EventResult.Success("Datos correctos")
         }
         return EventResult.Error(Exception("Ocurrio algo inesperado"))

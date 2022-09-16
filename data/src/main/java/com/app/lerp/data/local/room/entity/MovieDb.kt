@@ -30,3 +30,11 @@ fun MovieData.toRoom() = MovieDb(
     date = date,
     resume = resume
 )
+
+fun MovieDb.toEntityData() = MovieData(
+    image = image,
+    title = title,
+    note = note,
+    date = date,
+    resume = resume
+)

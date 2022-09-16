@@ -25,7 +25,7 @@ class MovieViewModel @Inject constructor(
                 if (hasInternet(context)) {
                     movieUseCase.getListMovie(page)
                 } else {
-                    movieUseCase.getListMovie(page)
+                    movieUseCase.getListMovieLocal(page)
                 }
             },
             result = {

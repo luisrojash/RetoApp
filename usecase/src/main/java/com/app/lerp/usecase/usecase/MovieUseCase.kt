@@ -42,4 +42,10 @@ class MovieUseCase @Inject constructor(
     suspend fun deleteMovielist() {
         movieLocal.deleteListMovieLocal()
     }
+
+    suspend fun getListMovieLocal(page: Int): EventResult<DataResponseMovie> {
+        val loadPageMovie = movieLocal.getLoadPageMovie()
+        val listMovieLocal = movieLocal.getListMovieLocal(page,loadPageMovie.totalPages)
+       return  EventResult.Success(DataResponseMovie(loadPageMovie.page,listMovieLocal,loadPageMovie.totalPages,loadPageMovie.totalResult))
+    }
 }

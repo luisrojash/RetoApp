@@ -3,12 +3,15 @@ package com.app.lerp.retoapp.ui.movie
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.app.lerp.core.extension.isConnected
 import com.app.lerp.core.util.EndlessOnScrollListener
 import com.app.lerp.entity.MovieData
+import com.app.lerp.retoapp.R
 import com.app.lerp.retoapp.base.BaseActivity
 import com.app.lerp.retoapp.databinding.ActivityMovieBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,6 +38,7 @@ class MovieActivity : BaseActivity() {
     }
 
     override fun initView() {
+        initValidateConexion()
         val linearLayoutManager = LinearLayoutManager(this)
         binding.recycler.setHasFixedSize(true)
         binding.recycler.layoutManager = linearLayoutManager
@@ -45,7 +49,7 @@ class MovieActivity : BaseActivity() {
 
         val paginationScrollListener = object : EndlessOnScrollListener(linearLayoutManager) {
             override fun loadMoreItems(page: Int, totalItemsCount: Int) {
-                showProgressDialog()
+
                 if (mCountEnd != totalItemsCount) {
                     val totalitemCount = linearLayoutManager.itemCount
                     if (mCountEnd != totalitemCount) {
@@ -53,13 +57,28 @@ class MovieActivity : BaseActivity() {
                             return
                         }
                         mCurrentPage += 1
-                        initViewModel()
+                        validationLoadMore()
+                        if(isConnected()){
+                            showProgressDialog()
+                            initViewModel()
+                        }
                     }
                     mCountEnd = totalitemCount
                 }
             }
         }
         binding.recycler.addOnScrollListener(paginationScrollListener)
+    }
+    private fun validationLoadMore(){
+
+    }
+
+    private fun initValidateConexion() {
+        if(isConnected()){
+            binding.fab.visibility = View.GONE
+        }else{
+            binding.fab.visibility = View.VISIBLE
+        }
     }
 
     private fun onClickDetail(it: MovieData) {

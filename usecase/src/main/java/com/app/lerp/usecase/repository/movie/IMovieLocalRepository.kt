@@ -14,4 +14,8 @@ interface IMovieLocalRepository {
     suspend fun deleteLoadPageMovieLocal()
 
     suspend fun insertLoadPageMovieLocal(loadPageMovieData: LoadPageMovieData)
+
+    suspend fun getListMovieLocal(page: Int, totalPages: Int):List<MovieData>
+
+    suspend fun getLoadPageMovie(): LoadPageMovieData
 }

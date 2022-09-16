@@ -18,4 +18,7 @@ interface MovieDao {
 
     @Query("DELETE FROM movie ")
     suspend fun deleteListLocal()
+
+    @Query("SELECT * FROM movie ")//LIMIT 5 OFFSET:totalPages
+    suspend fun getListMovieLocal(): List<MovieDb>
 }

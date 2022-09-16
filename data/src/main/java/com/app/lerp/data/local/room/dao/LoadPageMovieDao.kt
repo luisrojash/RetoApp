@@ -15,4 +15,9 @@ interface LoadPageMovieDao {
 
     @Query("DELETE FROM load_page_movie ")
     suspend fun deleteListLocal()
+
+    @Query("SELECT * FROM load_page_movie WHERE id=1")
+    suspend fun getLoadPageMovie(): LoadPageMovieDb
+
+
 }

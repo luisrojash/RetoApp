@@ -27,3 +27,10 @@ fun LoadPageMovieData.toRoom()= LoadPageMovieDb(
     totalPages = totalPages,
     totalResult = totalResult
 )
+
+
+fun LoadPageMovieDb.toData()= LoadPageMovieData(
+    page = page,
+    totalPages = totalPages,
+    totalResult = totalResult
+)

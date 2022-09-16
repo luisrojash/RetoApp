@@ -3,6 +3,7 @@ package com.app.lerp.data.local.room.datasource
 import android.util.Log
 import com.app.lerp.data.local.room.dao.LoadPageMovieDao
 import com.app.lerp.data.local.room.dao.MovieDao
+import com.app.lerp.data.local.room.entity.toEntityData
 import com.app.lerp.data.local.room.entity.toRoom
 import com.app.lerp.entity.LoadPageMovieData
 import com.app.lerp.entity.MovieData
@@ -32,6 +33,20 @@ class MovieRoom(
 
     override suspend fun insertLoadPageMovieLocal(loadPageMovieData: LoadPageMovieData) {
         loadPagemovieDao.insert(loadPageMovieData.toRoom())
+    }
+
+    override suspend fun getListMovieLocal(page: Int, totalPages: Int):List<MovieData> {
+        //page,totalPages
+        return movieDao.getListMovieLocal().map { it.toEntityData() }
+    }
+
+    override suspend fun getLoadPageMovie(): LoadPageMovieData {
+        val loadPageMovieDao = loadPagemovieDao.getLoadPageMovie()
+        return LoadPageMovieData(
+            loadPageMovieDao.page,
+            loadPageMovieDao.totalPages,
+            loadPageMovieDao.totalResult
+        )
     }
 
 }

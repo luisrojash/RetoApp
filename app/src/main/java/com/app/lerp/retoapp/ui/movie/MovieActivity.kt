@@ -48,19 +48,15 @@ class MovieActivity : BaseActivity() {
                 showProgressDialog()
                 if (mCountEnd != totalItemsCount) {
                     val totalitemCount = linearLayoutManager.itemCount
-                    Log.i("MOvieActivity ", "linearLayoutManager.itemCount" + totalitemCount)
                     if (mCountEnd != totalitemCount) {
                         if (mCurrentPage == totalPage) {
                             return
                         }
                         mCurrentPage += 1
-                        Log.i("MOvieActivity ", "mCurrentPage" + mCurrentPage)
                         initViewModel()
                     }
                     mCountEnd = totalitemCount
-                    Log.i("MOvieActivity ", "totalItemsCounts" + totalitemCount)
                 }
-                Log.i("MOvieActivity ", "totalItemsCounttotalItemsCount" + totalItemsCount)
             }
         }
         binding.recycler.addOnScrollListener(paginationScrollListener)

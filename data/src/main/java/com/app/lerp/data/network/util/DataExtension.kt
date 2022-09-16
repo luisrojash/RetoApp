@@ -9,15 +9,18 @@ import com.google.gson.Gson
 import retrofit2.Response
 
 
-fun <T, R> Response<BaseResponse<T>>?.validateResponse(
+//fun <T, R> Response<BaseResponse<T>>?.validateResponse(
+fun <T, R> Response<T>?.validateResponse(
     transform: T.() -> R,
 ): EventResult<R> {
     try {
         this?.let { response ->
             val errorBody: String? = response.errorBody()?.string()
             if (response.isSuccessful && errorBody.isNullOrEmpty()) {
-                val responseBody: BaseResponse<T>? = response.body()
-                return responseBody?.data?.let { data ->
+                //val responseBody: BaseResponse<T>? = response.body()
+                val responseBody: T? = response.body()
+                //return responseBody?.data?.let { data ->
+                return responseBody?.let { data ->
                     EventResult.Success(transform.invoke(data))
                 }?: kotlin.run {
                     Log.i(

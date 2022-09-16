@@ -13,7 +13,8 @@ class MovieAdapter(
     private var onClickInspection: (route: MovieData) -> Unit
 ) : RecyclerView.Adapter<MovieHolder>() {
 
-    private var items: List<MovieData> = ArrayList()
+    // private var items: List<MovieData> = ArrayList()
+    private var items: MutableList<MovieData> = mutableListOf()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
@@ -27,14 +28,14 @@ class MovieAdapter(
     }
 
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
-        val inspectionEntity= items[position]
-        holder.bindView(inspectionEntity,onClickInspection)
+        val inspectionEntity = items[position]
+        holder.bindView(inspectionEntity, onClickInspection)
     }
 
     override fun getItemCount() = items.size
 
     fun updateList(listInspection: List<MovieData>) {
-        items = listInspection
+        items.addAll(listInspection)
         notifyDataSetChanged()
     }
 

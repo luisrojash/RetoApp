@@ -2,6 +2,7 @@ package com.app.lerp.usecase.usecase
 
 import android.util.Log
 import com.app.lerp.core.model.EventResult
+import com.app.lerp.entity.DataResponseMovie
 import com.app.lerp.entity.MovieData
 import com.app.lerp.usecase.repository.movie.IMovieLocalRepository
 import com.app.lerp.usecase.repository.movie.IMovieNetworkRepository
@@ -13,7 +14,7 @@ class MovieUseCase @Inject constructor(
 )  {
 
 
-    suspend fun getListMovie(page: Int): EventResult<List<MovieData>> {
+    suspend fun getListMovie(page: Int): EventResult<DataResponseMovie> {
         val result = movieRemote.getListMovie(page)
         /*if (result is EventResult.Success) {
             //deleteListInspectionLocal()

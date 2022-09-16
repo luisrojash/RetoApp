@@ -1,12 +1,13 @@
 package com.app.lerp.data.network.response
 
+import com.app.lerp.entity.DataResponseMovie
 import com.app.lerp.entity.MovieData
 import com.google.gson.annotations.SerializedName
 
 data class DataRetrofitResponse(
     @SerializedName("pages")
-    val paage: Int,
-    @SerializedName("title")
+    val page: Int,
+    @SerializedName("results")
     val results: List<MovieResponse>,
     @SerializedName("total_pages")
     val totalPages: Int,
@@ -26,6 +27,14 @@ data class MovieResponse(
     val date: String,
     @SerializedName("overview")
     val resume: String
+)
+
+
+fun DataRetrofitResponse.toEntity() = DataResponseMovie(
+    page = page,
+    results = results.map { it.toEntity() },
+    totalPages = totalPages,
+    totalResult = totalResult
 )
 
 

@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.fragment.app.FragmentActivity
 import com.app.lerp.retoapp.base.BaseActivity
 import com.app.lerp.retoapp.databinding.ActivityLoginBinding
+import com.app.lerp.retoapp.ui.movie.MovieActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -52,8 +53,8 @@ class LoginActivity : BaseActivity() {
                 is LoginEventResult.Success -> {
                     hideProgressDialog()
                     showMessageSnack("Inicio Sesion")
-                    //startActivity(Intent(this, MainActivity::class.java))
-                    //finish()
+                    startActivity(Intent(this, MovieActivity::class.java))
+                    finish()
                 }
                 is LoginEventResult.Error -> {
                     hideProgressDialog()
@@ -64,5 +65,9 @@ class LoginActivity : BaseActivity() {
                 }
             }
         }
+    }
+
+    override fun initViewObserver() {
+
     }
 }

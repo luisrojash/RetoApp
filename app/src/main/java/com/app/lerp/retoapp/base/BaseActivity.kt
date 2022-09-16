@@ -23,6 +23,7 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract fun getDataActivityForResult(data: Intent?)
     abstract fun initView()
     abstract fun initViewModel()
+    abstract fun initViewObserver()
 
     private var progressDialog: ProgressDialog = ProgressDialog()
     private var progressIniciado = false
@@ -30,9 +31,9 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         startCreateViewBinding(savedInstanceState)
-
         initView()
         initViewModel()
+        initViewObserver()
     }
 
     fun showProgressDialog() {

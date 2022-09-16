@@ -22,6 +22,12 @@
 
         <activity
             android:name=".ui.login.LoginActivity"
+            >
+
+        </activity>
+
+        <activity
+            android:name=".ui.movie.MovieActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
